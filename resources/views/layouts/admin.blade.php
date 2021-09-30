@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>MCCSto.Tomas MaP</title>
     <link rel="shortcut icon" href="/img/brand/favicon.png" type="image/png">
-   <!-- CSRF Token -->
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+        integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+        crossorigin="" />
     <!-- Styles -->
     <style>
-        html,body{
-            margin:0px;
-            padding:0px;
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
         }
-      #mapId {
-        position:absolute;
-        top:0;
-        right:0;
-        bottom:0;
-        left:0;
+
+        #mapId {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
         }
-       
     </style>
-  </head>
-    <body>
-   <div id="mapId"></div>
+</head>
+
+<body>
+    <div id="mapId"></div>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+        integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+        crossorigin=""></script>
 
     <script>
         var mymap;
@@ -45,7 +52,7 @@
             loadMap();
         });
 
-        function loadMap(){
+        function loadMap_old(){
 
             mymap = L.map('mapId').setView([14.998441, 120.710790], 15);
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -53,6 +60,17 @@
                 id: 'mapbox.streets'
             }).addTo(mymap);
             getCurrentLocation(true);
+        }
+
+        function loadMap(){
+        
+        mymap = L.map('mapId').setView([14.998441, 120.710790], 15);
+       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+        {
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        }).addTo(mymap);
+        getCurrentLocation(true);
         }
         
 
@@ -149,5 +167,6 @@
         }  
 
     </script>
-    </body>
+</body>
+
 </html>
